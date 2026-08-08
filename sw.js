@@ -1,5 +1,5 @@
 /* عامل الخدمة — يجعل المنصة تعمل دون إنترنت بعد أول زيارة */
-var CACHE = "hweitat-v1";
+var CACHE = "hweitat-v2026-08-08";
 var FILES = ["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./apple-touch-icon.png","./og.jpg"];
 
 self.addEventListener("install", function (e) {
