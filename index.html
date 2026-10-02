@@ -756,6 +756,8 @@ let CFG = {
   center:["مركز الرشيد الإداري","Centre administratif d'Er-Rachid","Er-Rachid Administrative Centre"],
   region:["ولاية تكانت","Wilaya du Tagant","Tagant Region"],
   dept:["مقاطعة تجكجة","Moughataa de Tidjikja","Tidjikja Department"],
+  commune:["بلدية الواحات","Commune d'El Ouahat","El Ouahat Commune"],
+  city:["مدينة لحويطات","Ville de Lehweitatt","Town of Lehweitatt"],
   country:["الجمهورية الإسلامية الموريتانية","République Islamique de Mauritanie","Islamic Republic of Mauritania"],
   currency:["أوقية","MRU (ouguiya)","MRU (ouguiya)"],
   dates:["غير محدد بعد","À déterminer","To be announced"],
@@ -781,7 +783,9 @@ let CFG = {
            "Free registration via the link or by scanning the code"],
   compContact:["—","—","—"],
   /* موقع لحويطات على الخريطة — تقريبي، يضبطه المدير العام من «الإعدادات» */
-  mapLat:"18.6838", mapLng:"-11.5615", mapUrl:""
+  mapLat:"18.6838", mapLng:"-11.5615", mapUrl:"",
+  openMode:"نعم",        /* المنصة مفتوحة بلا رموز — غيّرها إلى "لا" لإعادة الرموز */
+  fbUrl:""               /* رابط صفحة فيسبوك */
 };
 </script>
 
@@ -1333,6 +1337,21 @@ p_shows:["العروض والاسكتشات","Spectacles et sketches","Shows & s
 in_shows:["فقرات المهرجان من اسكتشات ومداخلات وعروض: تُقترح ثم تُختار وتُرتَّب حسب الأهمية والوقت المتاح، وتُسند إلى أيام الدورة.","Les séquences du festival — sketches, interventions et spectacles : proposées, sélectionnées puis classées selon leur importance et le temps disponible, et réparties sur les journées de l'édition.","The festival's slots — sketches, talks and performances: proposed, selected, then ordered by importance and available time, and assigned to the days of the edition."],
 sh_total:["مجموع مدة العروض المقبولة","Durée totale des spectacles retenus","Total duration of accepted shows"],
 sh_min:["دقيقة","min","min"],
+vr_newer:["وصلت نسخة أحدث من المنصة — يجري التحديث…","Une version plus récente est disponible — mise à jour…","A newer version is available — updating…"],
+vr_stale:["المتصفح ما زال يعرض نسخة قديمة. أغلق الصفحة تماماً ثم افتح الرابط من جديد.","Le navigateur affiche encore une ancienne version. Fermez complètement la page puis rouvrez le lien.","The browser is still showing an old version. Close the page completely, then open the link again."],
+vr_noPub:["لم يُعثر على ملف النشر <code>data.json</code> على الرابط — هذا طبيعي إن لم تنشر بعد. نزّله من بطاقة «نشر البيانات» أعلاه وارفعه <b>بجانب index.html</b> في المستودع.","Le fichier <code>data.json</code> est introuvable — normal si vous n'avez pas encore publié. Téléchargez-le puis déposez-le <b>à côté de index.html</b>.","No <code>data.json</code> found — normal if you haven't published yet. Download it above and upload it <b>next to index.html</b>."],
+vr_pubOk:["ملف النشر موجود على الرابط ويصل الأعضاء.","Le fichier de publication est en ligne et parvient aux membres.","The published file is online and reaching members."],
+op_title:["طريقة الدخول","Mode d'accès","Access mode"],
+op_on:["المنصة مفتوحة للجميع بلا أي رمز — يختار كلٌّ اسمه ويدخل.","La plateforme est ouverte à tous, sans code : chacun choisit son nom et entre.","The platform is open to everyone with no code: each person picks their name and enters."],
+op_off:["الدخول بالرموز السرية مفعّل.","L'accès par code secret est activé.","Passcode sign-in is enabled."],
+op_toggle:["تبديل طريقة الدخول","Changer le mode d'accès","Switch access mode"],
+op_pick:["اختر اسمك للدخول — بلا رمز","Choisissez votre nom pour entrer — sans code","Pick your name to enter — no code"],
+op_switch:["تبديل المستخدم","Changer d'utilisateur","Switch user"],
+op_foot:["المنصة مفتوحة للاطّلاع والعمل بلا رموز. الصلاحيات تنظيمية لترتيب العمل لا أكثر.","Plateforme ouverte, sans code. Les droits organisent le travail, ils ne sont pas une sécurité.","Open platform, no codes. Permissions organise the work; they are not security."],
+op_hint:["هذه المنصة مفتوحة: اضغط اسمك في الأعلى لتبديل المستخدم.","Plateforme ouverte : touchez votre nom en haut pour changer d'utilisateur.","Open platform: tap your name at the top to switch user."],
+fb_label:["صفحة فيسبوك","Page Facebook","Facebook page"],
+fb_btn:["📘 تابعنا على فيسبوك","📘 Suivez-nous sur Facebook","📘 Follow us on Facebook"],
+c_fburl:["رابط صفحة فيسبوك","Lien de la page Facebook","Facebook page link"],
 vr_title:["إصدار المنصة","Version de la plateforme","Platform version"],
 vr_build:["رقم الإصدار","N° de version","Build"],
 vr_seed:["بذرة البيانات","Version des données","Data seed"],
@@ -1353,6 +1372,8 @@ gm_scan:["امسح بجوالك رمز التسجيل أو رمز الموقع",
 gm_reg:["امسح الرمز للتسجيل","Scannez pour vous inscrire","Scan to register"],
 gm_note:["الإحداثيات تقريبية — يستطيع المدير العام ضبطها من «الإعدادات» بلصق رابط الموقع الدقيق من خرائط جوجل.","Coordonnées approximatives — l'administrateur peut les corriger dans « Paramètres » en collant le lien exact de Google Maps.","Coordinates are approximate — the administrator can correct them in “Settings” by pasting the exact Google Maps link."],
 gm_embed:["الخريطة التفاعلية تحتاج اتصالاً بالإنترنت.","La carte interactive nécessite une connexion Internet.","The interactive map requires an internet connection."],
+c_commune:["البلدية","Commune","Commune"],
+c_city:["المدينة","Ville","Town"],
 c_maplat:["خط العرض (Latitude)","Latitude","Latitude"],
 c_maplng:["خط الطول (Longitude)","Longitude","Longitude"],
 c_mapurl:["رابط الموقع في خرائط جوجل (اختياري — يُلغي الإحداثيات)","Lien Google Maps (facultatif — remplace les coordonnées)","Google Maps link (optional — overrides the coordinates)"],
@@ -2685,8 +2706,8 @@ function navLabel(k){
    الحفظ على الجهاز (اختياري) وتثبيت التطبيق
    ========================================================================= */
 /* ---------- إصدار المنصة وبذرة البيانات ---------- */
-const BUILD="2026.08.08";      /* رقم إصدار الملف — يظهر في الإعدادات */
-const SEED_V=2;                /* رقم بذرة البيانات: يُرفَع كلما أُضيفت أقسام أو سجلات جاهزة جديدة */
+const BUILD="2026.10.02";      /* رقم إصدار الملف — يظهر في الإعدادات */
+const SEED_V=3;                /* رقم بذرة البيانات: يُرفَع كلما أُضيفت أقسام أو سجلات جاهزة جديدة */
 const SEED_KEY="hweitat.seed.v";
 const SEED=JSON.parse(JSON.stringify(DB));   /* نسخة أصلية من البيانات الجاهزة قبل أي تحميل */
 
@@ -2699,25 +2720,48 @@ function sigOf(k,r){
   }catch(e){return ""}
 }
 /* دمج ما استُجدّ في البذرة دون مسح أي عمل للأعضاء */
-function mergeSeed(){
+/* ما استُجدّ في كل بذرة — قائمة صريحة، فلا يُعاد أبداً سجلٌّ عدّله المستخدم أو حذفه */
+const SEED_NEW = {
+  /* 1: أقسام أُضيفت في نسخ سابقة — تُنسخ فقط إن كان القسم غائباً تماماً */
+  1: {arrays:["members","plan","videos","axes","criteria","jury","innov"], recs:[]},
+  /* 2: لجنة الربط والإنعاش الثقافي ورئيستها وقسم العروض ومهامها */
+  2: {arrays:["shows"], recs:[
+        ["committees","لجنة الربط والإنعاش الثقافي"],
+        ["users","pin:2013"],
+        ["plan","تقديم الاسكتشات"],
+        ["plan","تنظيم المداخلات واختيارها"],
+        ["plan","ترتيب العروض حسب الأهمية والوقت"]]},
+  3: {arrays:[], recs:[]}
+};
+/* يضيف ما استُجدّ فقط — ولا يمسّ أي سجل موجود ولا يُرجع محذوفاً */
+function mergeSeed(fromV){
   var added=0;
-  Object.keys(SEED).forEach(function(k){
-    if(k==="log"||k==="custom"||!Array.isArray(SEED[k])) return;
-    if(!Array.isArray(DB[k])){ DB[k]=JSON.parse(JSON.stringify(SEED[k])); added+=DB[k].length; return; }
-    var have={};
-    DB[k].forEach(function(r){var s=sigOf(k,r); if(s) have[s]=1});
-    SEED[k].forEach(function(r){
-      var s=sigOf(k,r); if(!s||have[s]) return;
-      DB[k].push(JSON.parse(JSON.stringify(r))); have[s]=1; added++;
+  for(var v=(fromV||0)+1; v<=SEED_V; v++){
+    var spec=SEED_NEW[v]; if(!spec) continue;
+    (spec.arrays||[]).forEach(function(k){
+      if(!Array.isArray(SEED[k])) return;
+      if(!Array.isArray(DB[k])){ DB[k]=JSON.parse(JSON.stringify(SEED[k])); added+=DB[k].length; }
     });
-  });
+    (spec.recs||[]).forEach(function(pair){
+      var k=pair[0], sig=pair[1];
+      if(!Array.isArray(SEED[k])) return;
+      if(!Array.isArray(DB[k])) DB[k]=[];
+      var exists=DB[k].some(function(r){return sigOf(k,r)===sig});
+      if(exists) return;
+      var src=SEED[k].filter(function(r){return sigOf(k,r)===sig})[0];
+      if(!src) return;
+      DB[k].push(JSON.parse(JSON.stringify(src))); added++;
+    });
+  }
   return added;
 }
 /* يُنفَّذ عند فتح نسخة أحدث من الملف فوق بيانات محفوظة أقدم */
 function seedUpgrade(prevV){
   var was=0; try{was=+(prevV!=null?prevV:(localStorage.getItem(SEED_KEY)||0))||0}catch(e){}
   if(was>=SEED_V) return 0;
-  var n=mergeSeed();
+  /* لقطة أمان قبل أي دمج — يستعيدها زر «استرجاع آخر نسخة كانت على هذا الجهاز» */
+  try{if(HAS_LS){var cur=localStorage.getItem(LS_KEY); if(cur) localStorage.setItem(PREV_KEY,cur)}}catch(e){}
+  var n=mergeSeed(was);
   try{if(HAS_LS) localStorage.setItem(SEED_KEY,String(SEED_V))}catch(e){}
   return n;
 }
@@ -2755,18 +2799,56 @@ function loadLocal(){
   }catch(e){return false}
 }
 /* تحديث قسري: يمسح ذاكرة المتصفح وعامل الخدمة ثم يعيد التحميل — دون المساس بالبيانات */
-function hardUpdate(){
+function hardUpdate(tag){
   toast(T("vr_done"));
-  var done=function(){ location.replace(location.pathname+"?v="+Date.now()) };
+  var done=function(){ location.replace(location.pathname+"?v="+(tag||Date.now())) };
   var jobs=[];
   try{ if(window.caches&&caches.keys) jobs.push(caches.keys().then(function(ks){
     return Promise.all(ks.map(function(k){return caches.delete(k)})) })) }catch(e){}
+  try{ if(navigator.serviceWorker&&navigator.serviceWorker.controller)
+    navigator.serviceWorker.controller.postMessage({cmd:"purge"}) }catch(e){}
   try{ if(navigator.serviceWorker&&navigator.serviceWorker.getRegistrations)
     jobs.push(navigator.serviceWorker.getRegistrations().then(function(rs){
       return Promise.all(rs.map(function(r){return r.unregister()})) })) }catch(e){}
   if(!jobs.length){done(); return}
   Promise.all(jobs).then(done).catch(done);
   setTimeout(done,2500);
+}
+/* ---------- كشف تلقائي لنسخة أحدث على الخادم (يعالج تخزين الجوال) ---------- */
+const VCHK_KEY="hweitat.vfix";
+function checkVersion(){
+  if(String(location.protocol).indexOf("http")!==0) return;
+  var url="version.json?t="+(new Date()).getTime();
+  fetch(url,{cache:"no-store"})
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(j){
+      if(!j||!j.build) return;
+      SRVBUILD=j.build;
+      if(String(j.build)===String(BUILD)) {try{sessionStorage.removeItem(VCHK_KEY)}catch(e){} return;}
+      var once=null; try{once=sessionStorage.getItem(VCHK_KEY)}catch(e){}
+      if(once===String(j.build)) { setTimeout(function(){toast(T("vr_stale"),true)},1200); return; }
+      try{sessionStorage.setItem(VCHK_KEY,String(j.build))}catch(e){}
+      toast(T("vr_newer"));
+      setTimeout(function(){hardUpdate(String(j.build))},700);
+    })
+    .catch(function(){});
+}
+let SRVBUILD=null;
+function toggleOpenMode(){
+  if(!isAdmin()){toast(T("noAccess"),true); return}
+  CFG.openMode = openMode()? "لا" : "نعم";
+  saveLocal(); chrome(); toast(openMode()?T("op_on"):T("op_off")); go("settings");
+}
+/* ---------- صفحة فيسبوك ---------- */
+function fbURL(){
+  var u=String(CFG.fbUrl||"").trim();
+  if(!u) return "";
+  if(!/^https?:\/\//i.test(u)) u="https://"+u.replace(/^\/+/,"");
+  return u;
+}
+function fbBtn(cls){
+  var u=fbURL(); if(!u) return "";
+  return '<a class="btn '+(cls||"")+'" href="'+esc(u)+'" target="_blank" rel="noopener">'+T("fb_btn")+'</a>';
 }
 function toggleSave(){AUTOSAVE=!AUTOSAVE; if(AUTOSAVE) saveLocal(); go("settings")}
 function wipeLocal(){try{localStorage.removeItem(LS_KEY)}catch(e){} AUTOSAVE=false; toast(T("stWiped"))}
@@ -2889,10 +2971,29 @@ function labelOf(k,o){
 
 /* ---------- شاشة الدخول ---------- */
 let GPICK=null, UNIOK=false;
+const openMode = ()=> String(CFG.openMode||"")==="نعم";
+const ME_KEY="hweitat.me";
+function rememberMe(u){
+  try{ if(!HAS_LS) return;
+    if(!u||u===GUEST){localStorage.removeItem(ME_KEY); return}
+    var n=Array.isArray(u.name)?(u.name[0]||""):String(u.name||"");
+    localStorage.setItem(ME_KEY,n);
+  }catch(e){}
+}
+function recallMe(){
+  try{ if(!HAS_LS) return null;
+    var n=localStorage.getItem(ME_KEY); if(!n) return null;
+    return DB.users.filter(function(u){
+      var x=Array.isArray(u.name)?(u.name[0]||""):String(u.name||"");
+      return x===n && u.status!=="معطل";
+    })[0]||null;
+  }catch(e){return null}
+}
 const uniOn = ()=> String(CFG.uniOn||"")==="نعم" && String(CFG.uniPin||"").length>=4;
 const uniProtectAdmin = ()=> String(CFG.uniAdmin||"")==="نعم";
 /* هل يحتاج هذا الحساب رمزاً خاصاً؟ */
 function needsOwnPin(u){
+  if(openMode()) return false;
   if(!uniOn()) return true;
   if(!UNIOK) return true;
   return u.role==="مدير عام" && uniProtectAdmin();
@@ -2901,7 +3002,11 @@ function usingDefaults(){
   return String(CFG.uniPin||"")==="1000" ||
     DB.users.some(function(u){return u.role==="مدير عام"&&pinOf(u)==="1234"});
 }
-function gateFoot(){return usingDefaults()?T("gateFoot"):T("gateFootOk")}
+function gateFoot(){
+  var v='<div style="margin-top:6px;font-size:.72rem;opacity:.7;direction:ltr;unicode-bidi:isolate">v'+BUILD+'</div>';
+  if(openMode()) return T("op_foot")+v;
+  return (usingDefaults()?T("gateFoot"):T("gateFootOk"))+v;
+}
 function gateRender(){
   paintState();
   document.getElementById("gLang").innerHTML=LANGS.map((l,i)=>
@@ -2909,7 +3014,7 @@ function gateRender(){
   document.getElementById("gTitle").innerHTML=tv(UI.brandName);
   const B=document.getElementById("gBody");
   /* المرحلة 1: الرمز الموحد */
-  if(GPICK==null && uniOn() && !UNIOK){
+  if(GPICK==null && !openMode() && uniOn() && !UNIOK){
     document.getElementById("gSub").textContent=T("uni_sub");
     B.innerHTML=`<div class="pinrow">
         <input id="gUni" type="password" inputmode="numeric" autocomplete="off" maxlength="12"
@@ -2922,7 +3027,7 @@ function gateRender(){
     setTimeout(()=>{const el=document.getElementById("gUni"); if(el) el.focus()},80);
     return;
   }
-  document.getElementById("gSub").textContent=GPICK==null?(UNIOK?T("uni_pick"):T("gateSub")):tv(GPICK.name);
+  document.getElementById("gSub").textContent=GPICK==null?(openMode()?T("op_pick"):(UNIOK?T("uni_pick"):T("gateSub"))):tv(GPICK.name);
   if(GPICK==null){
     const list=DB.users.map((u,i)=>({u,i})).filter(({u})=>u.status!=="معطل");
     const groups=[["مدير عام","g_admin"],["عضو اللجنة الدائمة","g_standing"],["رئيس لجنة","g_chairs"]];
@@ -2971,6 +3076,7 @@ function uniBack(){UNIOK=false; GPICK=null; gateRender()}
 function adminDirect(){
   const i=DB.users.map((u,n)=>({u,n})).filter(x=>x.u.role==="مدير عام"&&x.u.status!=="معطل")[0];
   if(!i){toast(T("gateDisabled"),true); return}
+  if(openMode()){ signIn(i.u); return }
   GPICK=i.u; gateRender();
 }
 function gatePick(i){
@@ -2990,7 +3096,7 @@ function gateTry(){
 }
 function gateGuest(){signIn(GUEST)}
 function signIn(u){
-  ME=u; GPICK=null;
+  ME=u; GPICK=null; rememberMe(u);
   document.getElementById("gate").classList.add("off");
   document.getElementById("app").style.display="";
   logAct("دخول","—","—");
@@ -3001,6 +3107,7 @@ function signIn(u){
 }
 function logout(){
   logAct("خروج","—","—");
+  rememberMe(null);
   ME=null; CUR="home"; UNIOK=false;
   document.getElementById("app").style.display="none";
   document.getElementById("gate").classList.remove("off");
@@ -3177,9 +3284,13 @@ function setLang(i){
   go(CUR==="search"?"home":CUR);
 }
 /* نص الترويسة الرسمية من الإعدادات */
+/* المسار الإداري الكامل: الدولة ← الولاية ← المقاطعة ← المركز ← البلدية ← المدينة */
+function statePath(){
+  return [tv(CFG.region),tv(CFG.dept),tv(CFG.center),tv(CFG.commune),tv(CFG.city)]
+    .map(function(x){return String(x||"").trim()}).filter(Boolean);
+}
 function stateLines(){
-  const l2=[tv(CFG.region),tv(CFG.dept),tv(CFG.center)].filter(Boolean).join(" — ");
-  return {a:tv(CFG.country),b:l2};
+  return {a:tv(CFG.country), b:statePath().join(" — "), p:statePath()};
 }
 function paintState(){
   const s=stateLines();
@@ -3194,7 +3305,9 @@ function chrome(){
   paintState();
   document.getElementById("brandTitle").innerHTML=tv(UI.brandShort);
   document.getElementById("brandEd").textContent=T("edition")+" "+CFG.edition;
-  document.getElementById("sidefoot").innerHTML=tv(UI.sidefoot);
+  document.getElementById("sidefoot").innerHTML=tv(UI.sidefoot)+
+    (fbURL()?'<div style="margin-top:9px"><a href="'+esc(fbURL())+'" target="_blank" rel="noopener" '+
+      'style="color:#e0a040;text-decoration:none;font-size:.8rem">'+T("fb_btn")+'</a></div>':"");
   ["gt1","gt2","gt3","gt4"].forEach((id,n)=>document.getElementById(id).textContent=T("grp"+(n+1)));
   document.getElementById("gsearch").placeholder=T("search");
   document.getElementById("prbtn").title=T("print");
@@ -3205,6 +3318,8 @@ function chrome(){
     w.className="who"+(isAdmin()?" adm":"");
     w.innerHTML=`<span class="av">${esc(initials(tv(ME.name)))}</span>
       <span><span class="wn">${esc(tv(ME.name))}</span><br><span class="wr">${esc(termC(ME.role))}</span></span>`;
+    if(openMode()){ w.style.cursor="pointer"; w.title=T("op_switch"); w.onclick=function(){logout()} }
+    else { w.style.cursor=""; w.onclick=null }
   }
   document.getElementById("outbtn").title=T("logout");
   document.getElementById("langsw").innerHTML=LANGS.map((l,i)=>
@@ -3506,9 +3621,9 @@ function mergeBackup(inp){
 }
 function saveCfg(){
   const fd=new FormData(document.getElementById("cfgFrm"));
-  ["name","place","center","region","dept","country","currency","dates","motto"].forEach(k=>{
+  ["name","place","center","region","dept","commune","city","country","currency","dates","motto"].forEach(k=>{
     CFG[k]=put(CFG[k],fd.get(k),false);});
-  ["edition","year","mapLat","mapLng","mapUrl"].forEach(k=>CFG[k]=fd.get(k));
+  ["edition","year","mapLat","mapLng","mapUrl","fbUrl"].forEach(k=>CFG[k]=fd.get(k));
   chrome(); paintState(); saveLocal(); toast(T("cfgSaved")); go("settings");
 }
 
@@ -3612,6 +3727,11 @@ function pageHome(){
   ${pubVideos().length?`<div class="card"><h3>${T("vd_home")}</h3>
      ${videoGrid(pubVideos().slice(0,6),function(v){return DB.videos.indexOf(v)})}
      <button class="btn" style="margin-top:11px" onclick="go('videos')">${T("vd_all")}</button></div>`:""}
+
+  ${fbURL()?`<div class="card" style="text-align:center">
+     <h3>📘 ${T("fb_label")}</h3>
+     <p style="font-size:.86rem;color:var(--text-secondary);margin:0 0 11px">${esc(tv(CFG.name))}</p>
+     ${fbBtn("p")}</div>`:""}
 
   ${stripHTML()}
 
@@ -3810,8 +3930,8 @@ function pageMap(){
 function pageSettings(){
   const flds=[["name","c_name"],["edition","c_edition"],["year","c_year"],["dates","c_dates"],
     ["place","c_place"],["center","c_center"],["region","c_region"],["dept","c_dept"],["country","c_country"],
-    ["currency","c_currency"],["motto","c_motto"],
-    ["mapLat","c_maplat"],["mapLng","c_maplng"],["mapUrl","c_mapurl"]];
+    ["commune","c_commune"],["city","c_city"],["currency","c_currency"],["motto","c_motto"],
+    ["mapLat","c_maplat"],["mapLng","c_maplng"],["mapUrl","c_mapurl"],["fbUrl","c_fburl"]];
   return `<div class="grid g2">
     <div class="card"><h3>${T("cfgTitle")}</h3>
       <form id="cfgFrm" onsubmit="return false">
@@ -3842,11 +3962,18 @@ function pageSettings(){
       <p style="font-size:.79rem;color:var(--text-muted);margin:9px 0 6px">${T("pub_warnLocal")}</p>
       <button class="btn sm" onclick="restorePrev()">↺ ${T("pub_prev")}</button>
       <hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+      <h4>🔓 ${T("op_title")}</h4>
+      <div class="note" style="margin:0 0 9px;font-size:.84rem;${openMode()?"background:#e5f4ea;border-color:#1f8a4c":""}">
+        ${openMode()?"✅ "+T("op_on"):"🔐 "+T("op_off")}</div>
+      ${isAdmin()?`<button class="btn" onclick="toggleOpenMode()">↔ ${T("op_toggle")}</button>`:""}
+      <hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
       <h4>🧩 ${T("vr_title")}</h4>
       <p style="font-size:.85rem;color:var(--text-secondary);margin:0 0 8px;line-height:1.9">
         ${T("vr_build")}: <b style="direction:ltr;unicode-bidi:isolate">${BUILD}</b><br>
         ${T("vr_seed")}: <b style="direction:ltr;unicode-bidi:isolate">${SEED_V}</b><br>
         ${T("vr_pub")}: <b style="direction:ltr;unicode-bidi:isolate">${PUBINFO.stamp?esc(PUBINFO.stamp):T("pub_none")}</b></p>
+      ${PUBINFO.found?`<div class="note" style="margin:0 0 9px;font-size:.82rem;background:#e5f4ea;border-color:#1f8a4c">✅ ${T("vr_pubOk")}</div>`
+        :`<div class="note" style="margin:0 0 9px;font-size:.82rem">⚠️ ${T("vr_noPub")}</div>`}
       <button class="btn a" onclick="hardUpdate()">${T("vr_hard")}</button>
       <div class="note" style="margin-top:8px;font-size:.82rem">${T("vr_hardNote")}</div>
       <hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
@@ -4512,7 +4639,7 @@ function fmtD2(d){
 function posterLoc(){
   var a=[tv(CFG.place),tv(CFG.center)].filter(Boolean).join(" — ");
   var cm=(LI===0?"،":",");
-  var b=[tv(CFG.dept),tv(CFG.region)].filter(Boolean).join(cm+" ")+" ("+T("po_mid")+")";
+  var b=[tv(CFG.commune),tv(CFG.dept),tv(CFG.region)].filter(Boolean).join(cm+" ")+" ("+T("po_mid")+")";
   return [a+cm,b];
 }
 function drawPoster(cv,cb){
@@ -4532,6 +4659,26 @@ function drawPoster(cv,cb){
   /* ---- بناء الكتل: كل كتلة {h, draw(y)} ---- */
   var B=[];
   function push(h,draw){B.push({h:h,draw:draw})}
+
+  /* الترويسة الرسمية: المسار الإداري كاملاً */
+  var stA=tv(CFG.country), stP=statePath();
+  var stLines=[]; 
+  (function(){
+    var cur="";
+    for(var i=0;i<stP.length;i++){
+      var t=cur?cur+" · "+stP[i]:stP[i];
+      mc.font="400 23px "+FONT;
+      if(mc.measureText(t).width>IW-30 && cur){stLines.push(cur); cur=stP[i];}
+      else cur=t;
+    }
+    if(cur) stLines.push(cur);
+  })();
+  push(34+stLines.length*32+14,function(y){
+    ctx.font="700 26px "+FONT; ctx.fillStyle="#d8e6dc";
+    ctx.fillText(stA,W/2,y+24);
+    ctx.font="400 23px "+FONT; ctx.fillStyle="#a9c4b4";
+    for(var i=0;i<stLines.length;i++) ctx.fillText(stLines[i],W/2,y+58+i*32);
+  });
 
   /* الشعار */
   var LOGO_D=150;
@@ -5220,10 +5367,22 @@ try{
   setLang(LI);        /* LI قد تكون مستعادة من الحفظ المحلي */
   if(seedAdded) setTimeout(function(){toast(T("sd_added")+" "+num(seedAdded))},900);
   compatCheck();
+  if(openMode()&&!ME){ signIn(recallMe()||GUEST); }
   fetchPublished();
+  checkVersion();
   if("serviceWorker" in navigator && String(location.protocol).indexOf("http")===0){
     window.addEventListener("load",function(){
-      navigator.serviceWorker.register("sw.js").catch(function(){});
+      var opt={}; try{opt={updateViaCache:"none"}}catch(e){}
+      navigator.serviceWorker.register("sw.js",opt).then(function(reg){
+        try{reg.update()}catch(e){}
+        try{reg.addEventListener("updatefound",function(){
+          var w=reg.installing;
+          if(!w) return;
+          w.addEventListener("statechange",function(){
+            if(w.state==="activated") checkVersion();
+          });
+        })}catch(e){}
+      }).catch(function(){});
     });
   }
 }catch(err){
